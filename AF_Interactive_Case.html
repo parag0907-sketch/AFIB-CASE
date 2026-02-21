@@ -3,43 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AF Interactive Case</title>
-    <style>
-        /* CSS for styling */
-        body { font-family: Arial, sans-serif; }
-        nav { background: #333; color: #fff; padding: 1em; }
-        .content { padding: 1em; }
-        /* Add additional styles as needed */
-    </style>
+    <title>Enhanced Medical Education Case</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Enhanced Medical Education Case: AFib Management</h1>
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#progress">Progress Tracking</a></li>
+                <li><a href="#ecg">ECG Visualization</a></li>
+                <li><a href="#glossary">Glossary</a></li>
+                <li><a href="#summary">Printable Summary</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="overview">
+            <h2>Case Overview</h2>
+            <p>This case revolves around the management of Atrial Fibrillation (AFib) through various treatment strategies. The goal is to provide a comprehensive understanding of AFib, its implications, and the management techniques involved.</p>
+        </section>
+        <section id="progress">
+            <h2>Progress Tracking</h2>
+            <p>Track your progress through the case using our interactive progress tracker.</p>
+            <div id="progressTracker">
+                <progress value="0" max="100"></progress>
+                <button onclick="updateProgress()">Update Progress</button>
+            </div>
+        </section>
+        <section id="timer">
+            <h2>Timer</h2>
+            <p>Time spent on this case: <span id="timerDisplay">0:00</span></p>
+            <button onclick="startTimer()">Start</button>
+            <button onclick="stopTimer()">Stop</button>
+            <button onclick="resetTimer()">Reset</button>
+        </section>
+        <section id="ecg">
+            <h2>ECG Visualization</h2>
+            <p>Visualize ECG patterns related to AFib.</p>
+            <canvas id="ecgCanvas"></canvas>
+        </section>
+        <section id="glossary">
+            <h2>Glossary of Terms</h2>
+            <dl>
+                <dt>Atrial Fibrillation</dt>
+                <dd>Irregular and often rapid heart rate that can increase the risk of strokes, heart failure, and other heart-related complications.</dd>
+                <dt>ECG</dt>
+                <dd>Electrocardiogram, a test that records the electrical activity of the heart.</dd>
+                <!-- Add more glossary terms as needed -->
+            </dl>
+        </section>
+        <section id="summary">
+            <h2>Printable Summary</h2>
+            <button onclick="printSummary()">Print Summary</button>
+            <div id="summaryContent">
+                <p>This summary will include key points and management strategies for AFib.</p>
+                <!-- Additional summary content -->
+            </div>
+        </section>
+        <section id="caseVariations">
+            <h2>Case Variations</h2>
+            <p>Consider various variations in the case and how they might affect management approaches.</p>
+            <!-- Content for branching logic goes here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Enhanced Medical Education Case</p>
+    </footer>
     <script>
-        // JavaScript for functionality
+        let timer;
+        let seconds = 0;
         function startTimer() {
-            let timer = document.getElementById('timer');
-            let seconds = 0;
-            setInterval(() => {
+            timer = setInterval(() => {
                 seconds++;
-                timer.textContent = seconds + ' seconds';
+                document.getElementById('timerDisplay').innerText = formatTime(seconds);
             }, 1000);
         }
 
-        function updateProgress(progress) {
-            document.getElementById('progress').textContent = progress + '%';
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            stopTimer();
+            seconds = 0;
+            document.getElementById('timerDisplay').innerText = '0:00';
+        }
+
+        function formatTime(secs) {
+            const minutes = Math.floor(secs / 60);
+            const secsPart = secs % 60;
+            return `${minutes}:${secsPart < 10 ? '0' : ''}${secsPart}`;
+        }
+
+        function printSummary() {
+            const content = document.getElementById('summaryContent').innerHTML;
+            const win = window.open('', '', 'height=500,width=800');
+            win.document.write('<html><head><title>Printable Summary</title>');
+            win.document.write('</head><body>' + content + '</body></html>');
+            win.document.close();
+            win.print();
         }
     </script>
-</head>
-<body onload="startTimer()">
-    <nav>
-        <!-- Improved navigation links -->
-        <a href="#section1">Section 1</a>
-        <a href="#section2">Section 2</a>
-    </nav>
-    <div class="content">
-        <h1>AF Interactive Case</h1>
-        <p>Progress Tracking: <span id="progress">0</span></p>
-        <p>Timer: <span id="timer">0 seconds</span></p>
-        <p>Glossary Tooltips: <span title="Atrial Fibrillation">AF</span></p>
-        <h2>Case Variations</h2>
-        <p>Content for ECG Visualization, Reference Citations, Branching Logic, and Case Variations will go here.</p>
-    </div>
 </body>
 </html>
