@@ -1,54 +1,61 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>AF Interactive Case</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atrial Fibrillation Case Study</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .tooltip { position: relative; display: inline-block; }
-        .tooltip .tooltiptext { visibility: hidden; width: 120px; background-color: black; color: #fff;
-            text-align: center; border-radius: 6px; padding: 5px 0;
-            position: absolute; z-index: 1; bottom: 100%; left: 50%; margin-left: -60px;
-        }
-        .tooltip:hover .tooltiptext { visibility: visible; }
-        @media screen and (max-width: 600px) {
-            /* Mobile responsiveness styles */
-            body { font-size: 14px; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .patient { margin-bottom: 30px; border: 1px solid #ccc; padding: 15px; border-radius: 5px; }
+        .quiz { margin-top: 20px; }
+        .question { margin: 10px 0; }
+        .score { font-weight: bold; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .patient { padding: 10px; }
         }
     </style>
 </head>
 <body>
-    <h1>Atrial Fibrillation Interactive Case</h1>
-    <div id='progress-tracking'>Progress: <span id='progress'>0%</span></div>
-    <div id='timer'>Timer: <span id='time'>00:00</span></div>
-    <button onclick='startTimer()'>Start Timer</button>
-    <h2>Glossary</h2>
-    <div class='tooltip'>Term 1<span class='tooltiptext'>Definition of Term 1</span></div>
-    <h2>Case Summary</h2>
-    <p>This is a comprehensive case study for medical students.</p>
-    <button onclick='printSummary()'>Printable Summary</button>
-    <h2>Navigation Improvements</h2>
-    <ul>
-        <li><a href='#section1'>Section 1</a></li>
-        <li><a href='#section2'>Section 2</a></li>
-    </ul>
-    <h2>ECG Visualizations</h2>
-    <img src='ecg_visualization.png' alt='ECG Visualization'>
-    <h2>Reference Citations</h2>
-    <p>Refer to <a href='#reference1'>Citations</a></p>
-    <h2>Branching Logic</h2>
-    <p>Choose your path...</p>
-    <h2>Case Variations</h2>
-    <p>This interactive case allows for different variations based on student input.</p>
+    <h1>Atrial Fibrillation Interactive Case Study</h1>
+    <div class="patient">
+        <h2>Mr. Thomas</h2>
+        <p>Clinical details about Mr. Thomas’s case.</p>
+        <p><strong>Case Variations:</strong> Detailed variations for Mr. Thomas's scenario will be added here.</p>
+    </div>
+    <div class="patient">
+        <h2>Ms. Johnson</h2>
+        <p>Clinical details about Ms. Johnson’s case.</p>
+        <p><strong>Case Variations:</strong> Detailed variations for Ms. Johnson's scenario will be added here.</p>
+    </div>
+    <div class="patient">
+        <h2>Mr. Patel</h2>
+        <p>Clinical details about Mr. Patel’s case.</p>
+        <p><strong>Case Variations:</strong> Detailed variations for Mr. Patel's scenario will be added here.</p>
+    </div>
+    <div class="quiz">
+        <h2>Quiz Questions</h2>
+        <div class="question">
+            <p>1. What is the primary risk factor for Atrial Fibrillation?</p>
+            <input type="radio" name="q1" value="0"> A. Age
+            <input type="radio" name="q1" value="1"> B. Hypertension
+        </div>
+        <div class="question">
+            <p>2. How is Atrial Fibrillation typically diagnosed?</p>
+            <input type="radio" name="q2" value="0"> A. Blood Test
+            <input type="radio" name="q2" value="1"> B. ECG
+        </div>
+    </div>
+    <button onclick="calculateScore()">Submit Quiz</button>
+    <div class="score" id="scoreDisplay"></div>
     <script>
-        let timer;
-        let seconds = 0;
-        function startTimer() {
-            timer = setInterval(function() {
-                seconds++;
-                document.getElementById('time').innerHTML = new Date(seconds * 1000).toISOString().substr(11, 8);
-            }, 1000);
-        }
-        function printSummary() {
-            window.print();
+        function calculateScore() {
+            let score = 0;
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            if (q1) score += parseInt(q1.value);
+            if (q2) score += parseInt(q2.value);
+            document.getElementById('scoreDisplay').innerText = 'Your score: ' + score + '/2';
         }
     </script>
 </body>
