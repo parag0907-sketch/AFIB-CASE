@@ -5,65 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AF Interactive Case</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>AF Interactive Case Study</h1>
+        <h1>AF Interactive Case</h1>
         <nav>
             <ul>
-                <li><a href="#progress">Progress Tracker</a></li>
-                <li><a href="#timer">Timer</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#case">Case</a></li>
+                <li><a href="#summary">Summary</a></li>
                 <li><a href="#glossary">Glossary</a></li>
-                <li><a href="#print">Printable Summary</a></li>
-                <li><a href="#navigation">Navigation</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="progress">
-            <h2>Progress Tracker</h2>
-            <div id="progress-container"></div>
-        </section>
-        <section id="timer">
-            <h2>Timer</h2>
-            <div id="timer-container">
-                <span id="timer-display">00:00</span>
-                <button id="start-timer">Start</button>
-                <button id="stop-timer">Stop</button>
-                <button id="reset-timer">Reset</button>
+        <section id="case">
+            <h2>Case Overview</h2>
+            <p>In this interactive case, you will explore various aspects of Atrial Fibrillation (AF).</p>
+            <div id="progress-tracking">
+                <p>Progress: <span id="progress">0%</span></p>
+                <progress value="0" max="100"></progress>
             </div>
+            <div id="timer">
+                <p>Time Elapsed: <span id="time">0:00</span></p>
+            </div>
+            <div id="ecg-visualization">
+                <h3>ECG Visualization</h3>
+                <canvas id="ecgCanvas"></canvas>
+            </div>
+            <button onclick="startTimer()" id="startButton">Start Case</button>
         </section>
         <section id="glossary">
             <h2>Glossary</h2>
-            <p>Hover over terms for definitions: <span title="Atrial Fibrillation">Atrial Fibrillation</span>, <span title="Electrocardiogram">ECG</span>.</p>
+            <dl>
+                <dt>Atrial Fibrillation</dt>
+                <dd>Irregular and often rapid heartbeat that can lead to blood clots, stroke, heart failure, and other heart-related complications.</dd>
+                <dt>ECG</dt>
+                <dd>Electrocardiogram, a test that records the electrical activity of the heart.</dd>
+                <!-- Add additional glossary terms here -->
+            </dl>
         </section>
-        <section id="print">
+        <section id="summary">
             <h2>Printable Summary</h2>
-            <button id="print-summary">Print Summary</button>
-        </section>
-        <section id="navigation">
-            <h2>Navigation Improvements</h2>
-            <p>Improved navigation links throughout the case study for easier access to information.</p>
-        </section>
-        <section id="ecg-visualization">
-            <h2>ECG Visualization</h2>
-            <div id="ecg-container">[ECG Visualization Plant]</div>
-        </section>
-        <section id="citations">
-            <h2>References</h2>
-            <ul>
-                <li>Reference 1: Details here.</li>
-                <li>Reference 2: Details here.</li>
-            </ul>
-        </section>
-        <section id="logic">
-            <h2>Branching Logic</h2>
-            <p>Case variations based on user selections for enhanced learning.</p>
+            <p>This section will provide a summary of your findings and decisions made during the case.</p>
+            <button onclick="printSummary()">Print Summary</button>
         </section>
     </main>
     <footer>
-        <p>&copy; 2026 AF Interactive Case Study</p>
+        <p>Reference citations go here.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
